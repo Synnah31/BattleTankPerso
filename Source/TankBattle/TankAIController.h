@@ -17,7 +17,7 @@ class TANKBATTLE_API ATankAIController : public AAIController
 	GENERATED_BODY()
 
 public : 
-	ATankAIController();
+	ATankAIController();		//ATank !!! (?)
 
 protected :
 	virtual void BeginPlay() override;

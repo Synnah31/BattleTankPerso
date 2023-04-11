@@ -22,7 +22,7 @@ UTankAimingComponent::UTankAimingComponent()
 void UTankAimingComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	// ...
 	
 }
@@ -32,7 +32,7 @@ void UTankAimingComponent::BeginPlay()
 void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
+	UE_LOG(LogTemp, Warning, TEXT("%f"), LaunchSpeed);			//Fonctionne pas
 	// ...
 }
 
@@ -97,3 +97,49 @@ void UTankAimingComponent::SetTurretReference(UTurretComponent* TurretReference)
 	Turret = TurretReference;
 }
 
+void AimAt(FVector HitLocation, float LaunchSpeed)		//
+{
+	AimAt(HitLocation, LaunchSpeed);
+	//UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *GetName(), *HitLocation.ToString());
+}
+
+// Called to bind functionality to input
+void APawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	SetupPlayerInputComponent(PlayerInputComponent);
+
+}
+
+void UTankAimingComponent::Initialize(UCanonComponent* Canon, UTurretComponent* Turret)
+{
+	if (!CanonToSet || !TurretToSet) { return; }
+
+	Canon = CanonToSet;
+	Turret = TurretToSet;
+}
+
+void APawn::Fire()
+{
+
+	bool IsReloaded = (FPlatformTime::Seconds() - LastTimeFire) > ReloadTime;
+	if (!ProjectileBlueprint) { return; }
+	//UE_LOG(LogTemp, Warning, TEXT("IsReload %b"), IsReloaded);
+
+	if (Canon && IsReloaded)
+	{
+
+		FVector SpawnProjectileLocation = Canon->GetSocketLocation(FName("StartProjectile"));
+		FRotator SpawnProjectileRotation = Canon->GetSocketRotation(FName("StartProjectile"));
+
+		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
+			ProjectileBlueprint,
+			SpawnProjectileLocation,
+			SpawnProjectileRotation
+			);
+
+		Projectile->LaunchProjectile(LaunchSpeed);
+		LastTimeFire = FPlatformTime::Seconds();
+		//UE_LOG(LogTemp, Warning, TEXT("Fire !!"));
+	}
+
+}

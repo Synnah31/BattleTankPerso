@@ -4,20 +4,20 @@
 #include "TankAIController.h"
 #include "Tank.h"
 
-ATankAIController::ATankAIController()
+ATankAIController::ATankAIController()	//ATank !!!
 {
 	PrimaryActorTick.bCanEverTick = true;
 }
 
 ATank* ATankAIController::GetControlledAITank() const
 {
-	ATank* var = Cast<ATank>(GetPawn());
+	ATank* var = Cast<ATank>(GetPawn());	//ATank !!!
 	return var;
 }
 
 ATank* ATankAIController::GetPlayerTank() const
 {
-	ATank* PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+	ATank* PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());	//ATank !!!
 	if (!PlayerTank) { return nullptr;  }
 	return PlayerTank;
 }

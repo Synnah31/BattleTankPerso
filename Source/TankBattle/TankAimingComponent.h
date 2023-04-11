@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "GameFramework/Pawn.h"
 #include "TankAimingComponent.generated.h"
 
 
@@ -17,6 +18,11 @@ enum class EAimingState : uint8
 
 class UCanonComponent;
 class UTurretComponent;
+class UTrackComponent;			
+class AProjectile;				
+
+class UTankMovementComponent;	
+class UNavMovementComponent;
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -41,7 +47,7 @@ public:
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
-	UCanonComponent* Canon = nullptr;
+	UCanonComponent* Canon = nullptr;		//Utilisation de Canon à la place du LocalCanon de Tank.h
 
 	UTurretComponent* Turret = nullptr;
 
@@ -51,7 +57,27 @@ public:
 
 	void SetTurretReference(UTurretComponent* TurretReference);
 
-	
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AProjectile> ProjectileBlueprint;
 
+	UNavMovementComponent* MovementComponent = nullptr;
+
+	UPROPERTY(EditDefaultsOnly)
+		float LaunchSpeed = 10000.f;
+
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) /*override*/;
+
+	//todo Créer une fonction Initialize appellable en Blueprint.
+	//Elle prend en parametre le Canon et la Tourelle et elle va permettre de set reference
+	UFUNCTION(BlueprintCallable)
+		void Initialize(UCanonComponent* CanonToSet, UTurretComponent* TurretToSet);
+
+	UFUNCTION(BlueprintCallable, Category = Setup)
+		void Fire();
+
+	double LastTimeFire = 0;
+
+	UPROPERTY(EditDefaultsOnly)
+		float ReloadTime = 3.f;
 		
 };

@@ -7,7 +7,7 @@
 #include "TankPlayerController.generated.h"
 
 
-class ATank;
+class ATank;	//ATank !!!
 /**
  * 
  */
