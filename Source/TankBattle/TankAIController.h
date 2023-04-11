@@ -6,7 +6,7 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
-class ATank;
+class ATank;							//Delete ? Replace by class APawn; ?
 
 /**
  * 
@@ -17,16 +17,16 @@ class TANKBATTLE_API ATankAIController : public AAIController
 	GENERATED_BODY()
 
 public : 
-	ATankAIController();		//ATank !!! (?)
+	ATankAIController();		
 
 protected :
 	virtual void BeginPlay() override;
 
 private: 
 
-	ATank* GetControlledAITank() const;
+	APawn* GetControlledAITank() const;		//ATank !!! (?)	
 
-	ATank* GetPlayerTank() const;
+	APawn* GetPlayerTank() const;			//ATank !!! (?)
 
 public :
 	virtual void Tick(float Deltatime) override;

@@ -4,6 +4,7 @@
 #include "TankAimingComponent.h"
 #include "CanonComponent.h"
 #include "TurretComponent.h"
+#include "Projectile.h"
 #include "Math/Vector.h"
 #include <Kismet/GameplayStatics.h>
 
@@ -36,7 +37,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
+void UTankAimingComponent::AimAt(FVector HitLocation, /*float LaunchSpeed*/)
 {
 	if (!Canon) { return; }
 
@@ -110,7 +111,7 @@ void APawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
-void UTankAimingComponent::Initialize(UCanonComponent* Canon, UTurretComponent* Turret)
+void UTankAimingComponent::Initialize(UCanonComponent* CanonToSet, UTurretComponent* TurretToSet)
 {
 	if (!CanonToSet || !TurretToSet) { return; }
 
@@ -118,7 +119,7 @@ void UTankAimingComponent::Initialize(UCanonComponent* Canon, UTurretComponent* 
 	Turret = TurretToSet;
 }
 
-void APawn::Fire()
+void UTankAimingComponent::Fire()
 {
 
 	bool IsReloaded = (FPlatformTime::Seconds() - LastTimeFire) > ReloadTime;

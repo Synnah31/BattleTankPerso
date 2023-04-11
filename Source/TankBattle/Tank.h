@@ -6,7 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
-class UTankAimingComponent;		//Ca dégage
+class UTankAimingComponent;		
 //class UCanonComponent;			//Ca dégage
 //class UTurretComponent;			//Ca dégage
 //class UTrackComponent;			//Ca dégage

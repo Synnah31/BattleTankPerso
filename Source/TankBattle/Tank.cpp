@@ -2,10 +2,10 @@
 
 
 #include "Tank.h"
-#include "Projectile.h"				//A supprimer
-#include "CanonComponent.h"			//A supprimer
-#include "TankAimingComponent.h"	//A supprimer
-#include "TankMovementComponent.h"	//A supprimer
+//#include "Projectile.h"				//A supprimer
+//#include "CanonComponent.h"			//A supprimer
+//#include "TankAimingComponent.h"	//A supprimer
+//#include "TankMovementComponent.h"	//A supprimer
 
 // Sets default values
 ATank::ATank()						//Ctrl+F ATank ne doit plus être nul-part sauf dans Tank.cpp et Tank.h... Remplacé par ::APawn (?)

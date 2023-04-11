@@ -45,7 +45,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
 
 	UCanonComponent* Canon = nullptr;		//Utilisation de Canon à la place du LocalCanon de Tank.h
 
@@ -63,7 +63,7 @@ public:
 	UNavMovementComponent* MovementComponent = nullptr;
 
 	UPROPERTY(EditDefaultsOnly)
-		float LaunchSpeed = 10000.f;
+		float LaunchSpeed = 10000.f;		//???????????????
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) /*override*/;
 

@@ -2,24 +2,22 @@
 
 
 #include "TankAIController.h"
-#include "Tank.h"
+//#include "Tank.h"
+#include "TankAimingComponent.h""
 
 ATankAIController::ATankAIController()	//ATank !!!
 {
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-ATank* ATankAIController::GetControlledAITank() const
+APawn* ATankAIController::GetControlledAITank() const
 {
-	ATank* var = Cast<ATank>(GetPawn());	//ATank !!!
-	return var;
+	return GetPawn();
 }
 
-ATank* ATankAIController::GetPlayerTank() const
+APawn* ATankAIController::GetPlayerTank() const
 {
-	ATank* PlayerTank = Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());	//ATank !!!
-	if (!PlayerTank) { return nullptr;  }
-	return PlayerTank;
+	return GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 void ATankAIController::BeginPlay()
@@ -32,7 +30,10 @@ void ATankAIController::BeginPlay()
 void ATankAIController::Tick(float Deltatime)
 {
 	Super::Tick(Deltatime);
-	GetControlledAITank()->AimAt(GetPlayerTank()->GetActorLocation());
+	//Récupérer Tank (en Pawn)
+	//Récupérer AimingComponent sur le pawn OwnTank = FindComponentByClass<UTankAimingComponent>();
+	UTankAimingComponent* AimingComponent = GetControlledAITank()->FindComponentByClass<UTankAimingComponent>();
+	AimingComponent->AimAt(GetPlayerTank()->GetActorLocation());
 	//GetControlledAITank()->Fire();
 
 }
