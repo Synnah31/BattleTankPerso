@@ -7,13 +7,6 @@
 #include "Tank.generated.h"
 
 class UTankAimingComponent;		
-//class UCanonComponent;			//Ca dégage
-//class UTurretComponent;			//Ca dégage
-//class UTrackComponent;			//Ca dégage
-//class AProjectile;				//Ca dégage
-//
-//class UTankMovementComponent;	//Ca dégage
-//class UNavMovementComponent;	//Ca dégage
 
 
 UCLASS()
@@ -24,52 +17,5 @@ class TANKBATTLE_API ATank : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ATank();
-
-	//void AimAt(FVector HitLocation);
-
-//protected:
-//	// Called when the game starts or when spawned
-//	virtual void BeginPlay() override;
-//
-//public:
-//	// Called every frame
-//	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	/*virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;*/
-
-	UPROPERTY(BlueprintReadOnly, Category = Setup)
-		UTankAimingComponent* TankAimingComponent = nullptr;
-
-	/*UNavMovementComponent* MovementComponent = nullptr;*/
-
-	/*UFUNCTION(BlueprintCallable, Category = Setup)
-		void SetCanonReference(UCanonComponent* CanonReferenceToSet);
-
-	UFUNCTION(BlueprintCallable, Category = Setup)
-		void SetTurretReference(UTurretComponent* TurretReferenceToSet);*/
-
-	/*UFUNCTION(BlueprintCallable, Category = Setup)
-		void Fire();*/
-
-	/*UCanonComponent* LocalCanon = nullptr;*/
-
-
-	/*UPROPERTY(EditDefaultsOnly)
-		TSubclassOf<AProjectile> ProjectileBlueprint;*/
-
-	//We can declare a UClass -> Problem is Designer can't set the good class by default
-	//Designer can put every class he wants -> Conflicts in our code of the projectile
-	//
-
-	/*UPROPERTY(EditDefaultsOnly)
-		float LaunchSpeed = 10000.f;*/		//Testé dans TankAimingComponent.h
-
-	/*double LastTimeFire = 0;*/
-
-
-	/*UPROPERTY(EditDefaultsOnly)
-		float ReloadTime = 3.f;*/
-
 
 };

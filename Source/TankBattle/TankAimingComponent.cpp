@@ -33,7 +33,6 @@ void UTankAimingComponent::BeginPlay()
 void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	UE_LOG(LogTemp, Warning, TEXT("%f"), LaunchSpeed);			//Fonctionne pas
 	// ...
 }
 
@@ -71,6 +70,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
+	if (!Canon || !Turret ) { return; }
 	//Get canon rotation
 	auto CanonRotation = Canon->GetForwardVector().Rotation();
 
@@ -88,20 +88,10 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	Turret->RotateRight(DeltaRotator.Yaw);
 }
 
-void UTankAimingComponent::SetCanonReference(UCanonComponent* CanonReference)
-{
-	Canon = CanonReference;
-}
-
-void UTankAimingComponent::SetTurretReference(UTurretComponent* TurretReference)
-{
-	Turret = TurretReference;
-}
-
 void AimAt(FVector HitLocation, float LaunchSpeed)		//
 {
 	AimAt(HitLocation, LaunchSpeed);
-	//UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *GetName(), *HitLocation.ToString());
+
 }
 
 // Called to bind functionality to input
@@ -124,7 +114,8 @@ void UTankAimingComponent::Fire()
 
 	bool IsReloaded = (FPlatformTime::Seconds() - LastTimeFire) > ReloadTime;
 	if (!ProjectileBlueprint) { return; }
-	//UE_LOG(LogTemp, Warning, TEXT("IsReload %b"), IsReloaded);
+	if (!Canon) { return; }
+
 
 	if (Canon && IsReloaded)
 	{
@@ -140,7 +131,6 @@ void UTankAimingComponent::Fire()
 
 		Projectile->LaunchProjectile(LaunchSpeed);
 		LastTimeFire = FPlatformTime::Seconds();
-		//UE_LOG(LogTemp, Warning, TEXT("Fire !!"));
 	}
 
 }

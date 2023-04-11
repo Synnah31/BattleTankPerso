@@ -20,7 +20,6 @@ class UCanonComponent;
 class UTurretComponent;
 class UTrackComponent;			
 class AProjectile;				
-
 class UTankMovementComponent;	
 class UNavMovementComponent;
 
@@ -53,22 +52,17 @@ public:
 
 	void MoveBarrelTowards(FVector AimDirection);
 
-	void SetCanonReference(UCanonComponent* CanonReference);
-
-	void SetTurretReference(UTurretComponent* TurretReference);
-
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UNavMovementComponent* MovementComponent = nullptr;
 
 	UPROPERTY(EditDefaultsOnly)
-		float LaunchSpeed = 10000.f;		//???????????????
+		float LaunchSpeed = 10000.f;		
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) /*override*/;
 
-	//todo Créer une fonction Initialize appellable en Blueprint.
-	//Elle prend en parametre le Canon et la Tourelle et elle va permettre de set reference
+
 	UFUNCTION(BlueprintCallable)
 		void Initialize(UCanonComponent* CanonToSet, UTurretComponent* TurretToSet);
 

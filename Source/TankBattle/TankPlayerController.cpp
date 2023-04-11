@@ -2,7 +2,6 @@
 
 
 #include "TankPlayerController.h"
-//#include "Tank.h"
 #include "TankAimingComponent.h""
 
 
@@ -36,9 +35,10 @@ void ATankPlayerController::AimTowardCrosshair()
 	FVector HitLocation; //Out Parameter
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		UTankAimingComponent* AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
+		UTankAimingComponent* AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();		///Sécurité pointeur null
+		if (!AimingComponent) { return; }
 		AimingComponent->AimAt(HitLocation);
-		//UE_LOG(LogTemp, Warning, TEXT("Aiming location is : %s"), *HitLocation.ToString())
+		
 	}
 }
 

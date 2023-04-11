@@ -23,17 +23,15 @@ APawn* ATankAIController::GetPlayerTank() const
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	//GetControlledAITank()->AimAt(GetPlayerTank()->GetActorLocation());
-	//UE_LOG(LogTemp, Warning, TEXT("%s is controlled by AI"), *GetControlledAITank()->GetActorLabel());
 }
 
 void ATankAIController::Tick(float Deltatime)
 {
 	Super::Tick(Deltatime);
-	//Récupérer Tank (en Pawn)
-	//Récupérer AimingComponent sur le pawn OwnTank = FindComponentByClass<UTankAimingComponent>();
+
 	UTankAimingComponent* AimingComponent = GetControlledAITank()->FindComponentByClass<UTankAimingComponent>();
+	if (!AimingComponent) { return; }
 	AimingComponent->AimAt(GetPlayerTank()->GetActorLocation());
-	//GetControlledAITank()->Fire();
+	AimingComponent->Fire();
 
 }
