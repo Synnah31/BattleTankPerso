@@ -60,8 +60,6 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 		float LaunchSpeed = 10000.f;		
 
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) /*override*/;
-
 
 	UFUNCTION(BlueprintCallable)
 		void Initialize(UCanonComponent* CanonToSet, UTurretComponent* TurretToSet);

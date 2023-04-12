@@ -2,13 +2,14 @@
 
 
 #include "TankPlayerController.h"
-#include "TankAimingComponent.h""
+#include "TankAimingComponent.h"
 
 
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//TODO Delete
 	//UE_LOG(LogTemp, Warning, TEXT("%s is MY FUCKIN TANK"), *GetControlledTank()->GetActorLabel());
 
 
@@ -16,6 +17,7 @@ void ATankPlayerController::BeginPlay()
 
 void ATankPlayerController::Tick(float Deltatime)
 {
+	Super::Tick(Deltatime); //Manquant
 	AimTowardCrosshair();
 }
 
@@ -35,8 +37,8 @@ void ATankPlayerController::AimTowardCrosshair()
 	FVector HitLocation; //Out Parameter
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		UTankAimingComponent* AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();		///Sécurité pointeur null
-		if (!AimingComponent) { return; }
+		UTankAimingComponent* AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();		
+		if (!ensure(AimingComponent)) { return; } ///Sécurité pointeur null
 		AimingComponent->AimAt(HitLocation);
 		
 	}
@@ -52,7 +54,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 	FVector LookDirection;
 	if (GetLookDirection(CrosshairPositionInScreen, LookDirection))
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("Look Direction : %s"), *LookDirection.ToString())
+		//UE_LOG(LogTemp, Warning, TEXT("Look Direction : %s"), *LookDirection.ToString()) //TODO Delete
 		return GetLookVectorHitPosition(LookDirection, OutHitLocation);
 	}
 	return false;
@@ -74,7 +76,7 @@ bool ATankPlayerController::GetLookVectorHitPosition(FVector LookDirection, FVec
 	if (hitSucced)
 	{
 		HitLocation = HitResult.Location;
-		//UE_LOG(LogTemp, Warning, TEXT("Hit Location : %s"), *HitLocation.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Location : %s"), *HitLocation.ToString()); //Delete
 		return true;
 	}
 

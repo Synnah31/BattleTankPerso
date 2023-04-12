@@ -15,6 +15,9 @@ class TANKBATTLE_API UCanonComponent : public UStaticMeshComponent
 	GENERATED_BODY()
 
 public:
+
+	//TODO Comment
+	//Change the rotation on the Y axis (Pitch)
 	void Elevate(float DegreesPerSecond);
 
 private:

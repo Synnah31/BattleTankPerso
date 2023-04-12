@@ -6,7 +6,7 @@
 
 void UTurretComponent::RotateRight(float DegreesPerSecond)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Rotate at : %f"), DegreesPerSecond);
+	//UE_LOG(LogTemp, Warning, TEXT("Rotate at : %f"), DegreesPerSecond); //TODO Delete
 
 	auto RelativeSpeedClamped = FMath::Clamp<float>(DegreesPerSecond, -1, +1);
 

@@ -17,6 +17,7 @@ class TANKBATTLE_API UTankTrack : public UStaticMeshComponent
 public:
 
 	UFUNCTION(BlueprintCallable)
+	//TODO Comment
 		void SetThrottle(float speed);
 
 	UPROPERTY(EditDefaultsOnly)

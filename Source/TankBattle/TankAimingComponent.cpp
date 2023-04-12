@@ -38,7 +38,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector HitLocation)
 {
-	if (!Canon) { return; }
+	if (!Canon) { return; } //TODO Secu ensure
 
 	FString NameOwner = GetOwner()->GetActorLabel();
 	FString OwnerLocation = Canon->GetComponentLocation().ToString();
@@ -70,7 +70,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
-	if (!Canon || !Turret ) { return; }
+	if (!Canon || !Turret ) { return; } //TODO Ensure
 	//Get canon rotation
 	auto CanonRotation = Canon->GetForwardVector().Rotation();
 
@@ -88,21 +88,9 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	Turret->RotateRight(DeltaRotator.Yaw);
 }
 
-void AimAt(FVector HitLocation, float LaunchSpeed)		//
-{
-	AimAt(HitLocation, LaunchSpeed);
-
-}
-
-// Called to bind functionality to input
-void APawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-
 void UTankAimingComponent::Initialize(UCanonComponent* CanonToSet, UTurretComponent* TurretToSet)
 {
+	//TODO Ensure
 	if (!CanonToSet || !TurretToSet) { return; }
 
 	Canon = CanonToSet;
@@ -117,7 +105,7 @@ void UTankAimingComponent::Fire()
 	if (!Canon) { return; }
 
 
-	if (Canon && IsReloaded)
+	if (IsReloaded)
 	{
 
 		FVector SpawnProjectileLocation = Canon->GetSocketLocation(FName("StartProjectile"));

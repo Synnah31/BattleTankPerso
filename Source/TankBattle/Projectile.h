@@ -29,5 +29,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	//TODO Comment
 	void LaunchProjectile(float Speed);
 };

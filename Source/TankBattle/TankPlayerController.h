@@ -6,8 +6,6 @@
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
-
-class ATank;	
 class UTankAimingComponent;
 /**
  * 
@@ -19,7 +17,7 @@ class TANKBATTLE_API ATankPlayerController : public APlayerController
 
 protected:
 	UFUNCTION(BlueprintCallable, Category = Setup)
-		APawn* GetControlledTank() const;
+		APawn* GetControlledTank() const; //TODO Rename
 
 private:
 

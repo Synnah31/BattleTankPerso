@@ -6,7 +6,8 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
-class ATank;							//Delete ? Replace by class APawn; ?
+class UTankAimingComponent;
+class ATank;							//TODO Delete ? Replace by class APawn; ?
 
 /**
  * 
@@ -24,13 +25,14 @@ protected :
 
 private: 
 
-	APawn* GetControlledAITank() const;		//ATank !!! (?)	
+	APawn* GetControlledAITank() const;	//TODO Rename
 
-	APawn* GetPlayerTank() const;			//ATank !!! (?)
+	APawn* GetPlayerPawn() const; 
 
 public :
 	virtual void Tick(float Deltatime) override;
 
+	//TODO Comment
 	float AcceptanceRadius = 300.f;
 	
 };

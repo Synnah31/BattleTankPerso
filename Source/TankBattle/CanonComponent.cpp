@@ -17,5 +17,5 @@ void UCanonComponent::Elevate(float DegreesPerSecond)
 
 	SetRelativeRotation(FRotator(RawClampedElevation, 0.f, 0.f));
 
-	//UE_LOG(LogTemp, Warning, TEXT("Elevate at : %f"), RawClampedElevation);
+	//UE_LOG(LogTemp, Warning, TEXT("Elevate at : %f"), RawClampedElevation); //TODO Delete
 }

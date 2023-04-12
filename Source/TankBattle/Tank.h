@@ -6,7 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
-class UTankAimingComponent;		
+class UTankAimingComponent; //TODO Delete	
 
 
 UCLASS()

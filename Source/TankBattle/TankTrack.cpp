@@ -16,5 +16,5 @@ void UTankTrack::SetThrottle(float speed)
         Location
     );
 
-	//UE_LOG(LogTemp, Warning, TEXT("%f speed"), speed);
+	//UE_LOG(LogTemp, Warning, TEXT("%f speed"), speed); //TODO Delete
 }

@@ -15,6 +15,7 @@ class TANKBATTLE_API UTurretComponent : public UStaticMeshComponent
 	GENERATED_BODY()
 	
 public:
+	//TODO Comment
 	void RotateRight(float DegreesPerSecond);
 
 private:
