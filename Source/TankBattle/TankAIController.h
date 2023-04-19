@@ -7,6 +7,7 @@
 #include "TankAIController.generated.h"
 
 class ATank;							//Delete ? Replace by class APawn; ?
+class UGameManager;
 
 /**
  * 
@@ -17,7 +18,8 @@ class TANKBATTLE_API ATankAIController : public AAIController
 	GENERATED_BODY()
 
 public : 
-	ATankAIController();		
+	ATankAIController();	
+	void SubscribeToGameManager();
 
 protected :
 	virtual void BeginPlay() override;

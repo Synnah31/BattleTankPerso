@@ -9,6 +9,8 @@
 
 class ATank;	
 class UTankAimingComponent;
+class UGameManager;
+
 /**
  * 
  */
@@ -23,6 +25,7 @@ protected:
 
 private:
 
+	void GetClosestVisibleTarget();
 
 	void AimTowardCrosshair();
 

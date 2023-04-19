@@ -3,11 +3,20 @@
 
 #include "TankAIController.h"
 //#include "Tank.h"
-#include "TankAimingComponent.h""
+#include "GameManager.h"
+#include "TankAimingComponent.h"
 
 ATankAIController::ATankAIController()	//ATank !!!
 {
 	PrimaryActorTick.bCanEverTick = true;
+}
+
+void ATankAIController::SubscribeToGameManager()
+{
+	UGameManager* GM = GetWorld()->GetSubsystem<UGameManager>();
+	GM->Pawns.Add(GetPawn());
+	
+	if (!GM) { return; }
 }
 
 APawn* ATankAIController::GetControlledAITank() const

@@ -2,7 +2,8 @@
 
 
 #include "TankPlayerController.h"
-#include "TankAimingComponent.h""
+#include "TankAimingComponent.h"
+#include "GameManager.h"
 
 
 void ATankPlayerController::BeginPlay()
@@ -27,6 +28,19 @@ APawn* ATankPlayerController::GetControlledTank() const
 }
 
 
+
+void ATankPlayerController::GetClosestVisibleTarget()
+{
+	UGameManager* GM = GetWorld()->GetSubsystem<UGameManager>();
+	APawn* BestCandidate;
+	float BestDistance = 10000.0f;
+	if (!GM || !BestCandidate) { return; }
+
+	for (int i = 0; i < GM->Pawns.Num(); i++)
+	{
+		
+	}
+}
 
 void ATankPlayerController::AimTowardCrosshair()
 {
